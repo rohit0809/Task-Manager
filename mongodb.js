@@ -1,10 +1,17 @@
 // CRUD Create Read Update Delete
 
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+// const mongodb = require('mongodb')
+// const MongoClient = mongodb.MongoClient
+// const ObjectID = mongodb.ObjectID
+
+const {MongoClient, ObjectID} = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
+
+const id = new ObjectID()
+console.log(id)
+console.log(id.getTimestamp())
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error,client) => {
     if(error){
@@ -14,10 +21,11 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error,client) => {
     console.log('Connected Correctly!!')
     const db = client.db(databaseName)
 
-    /* insert one example
+    // insert one example
     db.collection('users').insertOne({
-        name: 'Sanjeev',
-        age: 56
+        _id: id,
+        name: 'Babu',
+        age: 24
     }, (error,result) => {
         if(error){
             return console.log('Unable to insert user!!')
@@ -39,7 +47,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error,client) => {
         }
 
         console.log(result.ops)
-    })*/
+    })
 
     db.collection('tasks').insertMany([{
         description: 'Clean the house',
@@ -56,5 +64,5 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error,client) => {
         }
 
         console.log(result.ops)
-    })
+    })*/
 })
