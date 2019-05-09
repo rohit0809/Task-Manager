@@ -5,5 +5,6 @@ const databaseName = 'task-manager-api'
 
 mongoose.connect(connectionURL, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 })
